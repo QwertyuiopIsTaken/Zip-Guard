@@ -13,7 +13,7 @@ const unlockBtn = document.getElementById("unlockBtn");
 connectBtn.addEventListener("click", async () => {
     try {
 
-        statusLbl.textContent = "Connecting...";
+        statusLbl.textContent = "Status: Connecting...";
         statusLbl.className = "status connecting";
 
         device = await navigator.bluetooth.requestDevice({
@@ -27,7 +27,7 @@ connectBtn.addEventListener("click", async () => {
 
         characteristic = await service.getCharacteristic(CHARACTERISTIC_UUID);
 
-        statusLbl.textContent = "Connected";
+        statusLbl.textContent = "Status: Connected";
         statusLbl.className = "status connected";
 
         lockBtn.disabled = false;
@@ -37,7 +37,7 @@ connectBtn.addEventListener("click", async () => {
 
         console.log(error);
 
-        statusLbl.textContent = "Disconnected";
+        statusLbl.textContent = "Status: Disconnected";
         statusLbl.className = "status disconnected";
 
     }

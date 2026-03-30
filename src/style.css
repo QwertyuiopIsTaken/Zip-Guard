@@ -10,8 +10,6 @@ body {
     flex-direction: column;
     align-items: center;
 
-    height: 100vh;
-
 }
 
 
@@ -22,24 +20,40 @@ header {
 
     background: #16213e;
 
-    padding: 15px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+header h1 {
+
+    margin: 15px;
+
+    font-size: 36px;
 
 }
 
 
 .status {
 
-    padding: 5px 12px;
+    padding: 8px 12px;
     border-radius: 10px;
 
-    font-size: 14px;
+    font-size: 18px;
+
+    margin: 15px;
 
 }
 
+.status.connecting {
+
+    background: #e9e945;
+    color: black;
+
+}
 
 .status.disconnected {
 
@@ -60,7 +74,9 @@ header {
 
 .connection-panel {
 
-    margin-top: 40px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 24px;
 
 }
 
@@ -69,7 +85,7 @@ header {
 
     padding: 12px 25px;
 
-    font-size: 16px;
+    font-size: 20px;
 
     border-radius: 10px;
 
@@ -109,7 +125,7 @@ header {
 
     padding: 18px;
 
-    font-size: 18px;
+    font-size: 20px;
 
     border-radius: 12px;
 
