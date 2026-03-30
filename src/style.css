@@ -1,0 +1,144 @@
+body {
+
+    font-family: Arial, sans-serif;
+    background: #1a1a2e;
+    color: white;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100vh;
+
+}
+
+
+
+header {
+
+    width: 100%;
+
+    background: #16213e;
+
+    padding: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.status {
+
+    padding: 5px 12px;
+    border-radius: 10px;
+
+    font-size: 14px;
+
+}
+
+
+.status.disconnected {
+
+    background: #e94560;
+
+}
+
+
+.status.connected {
+
+    background: #2ecc71;
+    color: black;
+
+}
+
+
+/* CONNECTION PANEL */
+
+.connection-panel {
+
+    margin-top: 40px;
+
+}
+
+
+.connect-btn {
+
+    padding: 12px 25px;
+
+    font-size: 16px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: #0f3460;
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+.connect-btn:hover {
+
+    background: #1a4f8a;
+
+}
+
+
+/* CONTROL BUTTONS */
+
+.controls {
+
+    margin-top: 40px;
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+
+.btn {
+
+    width: 150px;
+
+    padding: 18px;
+
+    font-size: 18px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+.lock-btn {
+
+    background: #e94560;
+    color: white;
+
+}
+
+
+.unlock-btn {
+
+    background: #2ecc71;
+    color: black;
+
+}
+
+
+.btn:disabled {
+
+    opacity: 0.4;
+    cursor: not-allowed;
+
+}
