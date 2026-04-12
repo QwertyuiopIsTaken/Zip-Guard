@@ -10,7 +10,37 @@ const connectBtn = document.getElementById("bleConnectBtn");
 const lockBtn = document.getElementById("lockBtn");
 const unlockBtn = document.getElementById("unlockBtn");
 
+const lockLbl = document.getElementById("lockLbl");
+
+/* debounce flag */
+
+let buttonCooldown = false;
+
+/* helper function */
+
+function startCooldown() {
+
+    lockLbl.textContent = "Locking Mode: Processing...";
+    buttonCooldown = true;
+
+    lockBtn.disabled = true;
+    unlockBtn.disabled = true;
+
+    setTimeout(() => {
+
+        buttonCooldown = false;
+
+        lockBtn.disabled = false;
+        unlockBtn.disabled = false;
+
+    }, 2000);
+}
+
+
+/* CONNECT BUTTON */
+
 connectBtn.addEventListener("click", async () => {
+
     try {
 
         statusLbl.textContent = "Status: Connecting...";
@@ -41,22 +71,50 @@ connectBtn.addEventListener("click", async () => {
         statusLbl.className = "status disconnected";
 
     }
+
 });
 
 
+/* LOCK BUTTON */
+
 lockBtn.addEventListener("click", async () => {
-    if (!characteristic) return;
+
+    if (!characteristic || buttonCooldown) return;
 
     await characteristic.writeValue(
         new TextEncoder().encode("1")
     );
+
+    startCooldown();
+
+    lockLbl.textContent = "Locking Mode: ENABLED";
 });
 
 
+/* UNLOCK BUTTON */
+
 unlockBtn.addEventListener("click", async () => {
-    if (!characteristic) return;
+
+    if (!characteristic || buttonCooldown) return;
 
     await characteristic.writeValue(
         new TextEncoder().encode("0")
     );
+
+    startCooldown();
+
+    lockLbl.textContent = "Locking Mode: DISABLED";
 });
+
+device.addEventListener("gattserverdisconnected", () => {
+
+    statusLbl.textContent = "Status: Disconnected";
+    statusLbl.className = "status disconnected";
+
+    lockBtn.disabled = true;
+    unlockBtn.disabled = true;
+
+    console.log("BLE lost connection.");
+
+});
+
