@@ -159,6 +159,18 @@ header h1 {
 
 }
 
+input[type="text"]:focus {
+
+    border-color: #007BFF;
+    outline: none; /* Removes default browser outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+}
+
+input[type="text"], textarea {
+    font-size: 20px;
+    margin-top: 20px;
+}
 
 .btn:disabled {
 

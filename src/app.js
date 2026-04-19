@@ -12,6 +12,8 @@ const unlockBtn = document.getElementById("unlockBtn");
 
 const lockLbl = document.getElementById("lockLbl");
 
+const textbox = document.getElementById("txtBox");
+
 /* debounce flag */
 
 let buttonCooldown = false;
@@ -81,6 +83,8 @@ lockBtn.addEventListener("click", async () => {
 
     if (!characteristic || buttonCooldown) return;
 
+    if (textbox.value != "67") return;
+
     await characteristic.writeValue(
         new TextEncoder().encode("1")
     );
@@ -96,6 +100,8 @@ lockBtn.addEventListener("click", async () => {
 unlockBtn.addEventListener("click", async () => {
 
     if (!characteristic || buttonCooldown) return;
+
+    if (textbox.value != "67") return;
 
     await characteristic.writeValue(
         new TextEncoder().encode("0")
