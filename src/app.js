@@ -14,6 +14,10 @@ const lockLbl = document.getElementById("lockLbl");
 
 const textbox = document.getElementById("txtBox");
 
+if (!navigator.bluetooth) {
+    alert("Bluetooth is not supported on this device/browser. Please use Chrome on Android or a desktop browser.");
+}
+
 /* debounce flag */
 
 let buttonCooldown = false;
