@@ -120,7 +120,7 @@ lockBtn.addEventListener("click", async () => {
     if (textbox.value != "67") return;
 
     await characteristic.writeValue(
-        new TextEncoder().encode("1")
+        new TextEncoder().encode("0")
     );
 
     startCooldown();
@@ -138,7 +138,7 @@ unlockBtn.addEventListener("click", async () => {
     if (textbox.value != "67") return;
 
     await characteristic.writeValue(
-        new TextEncoder().encode("0")
+        new TextEncoder().encode("1")
     );
 
     startCooldown();
