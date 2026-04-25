@@ -39,7 +39,7 @@ function startCooldown() {
         lockBtn.disabled = false;
         unlockBtn.disabled = false;
 
-    }, 2000);
+    }, 1000);
 }
 
 
