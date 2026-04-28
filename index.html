@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ZipGuard Controller App</title>
 
     <link rel="stylesheet" href="src/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
 
 <body>
@@ -48,24 +52,21 @@
 
     <input type="text" id="txtBox" placeholder="Passcode">
 
-    <div id="map" style="height: 400px;"></div>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <div id="map" style="height: 400px; width: 65%; margin: 60px;"></div>
     
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <script>
 
-        let map = L.map('map').setView([40.744, -74.032], 15);
+        let map = L.map('map').setView([40.7308705, -73.9977265], 15);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
         }).addTo(map);
 
-        let marker = L.marker([40.744, -74.032]).addTo(map);
+        let marker = L.marker([40.7308705, -73.9977265]).addTo(map);
 
-        function updateLocation(lat, lng)
-        {
+        function updateLocation(lat, lng) {
             marker.setLatLng([lat, lng]);
             map.setView([lat, lng], 15);
         }

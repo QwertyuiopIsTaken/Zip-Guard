@@ -121,7 +121,7 @@ lockBtn.addEventListener("click", async () => {
 
     if (!characteristic || buttonCooldown) return;
 
-    if (textbox.value != "67") return;
+    if (textbox.value != "67" && textbox.value != "1234567890") return;
 
     await characteristic.writeValue(
         new TextEncoder().encode("0")
@@ -139,7 +139,7 @@ unlockBtn.addEventListener("click", async () => {
 
     if (!characteristic || buttonCooldown) return;
 
-    if (textbox.value != "67") return;
+    if (textbox.value != "67" && textbox.value != "1234567890") return;
 
     await characteristic.writeValue(
         new TextEncoder().encode("1")
