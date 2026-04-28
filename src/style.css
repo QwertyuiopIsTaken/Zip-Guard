@@ -42,7 +42,7 @@ footer {
 
 }
 
-.status {
+#status {
 
     padding: 8px 12px;
     border-radius: 10px;
@@ -116,9 +116,7 @@ footer {
 .controls {
 
     margin-top: 40px;
-
     display: flex;
-
     gap: 20px;
 
 }
@@ -127,15 +125,10 @@ footer {
 .btn {
 
     width: 150px;
-
     padding: 18px;
-
     font-size: 20px;
-
     border-radius: 12px;
-
     border: none;
-
     cursor: pointer;
 
 }
@@ -156,11 +149,29 @@ footer {
 
 }
 
-.lockLbl {
+#lockLbl {
 
     margin-top: 20px;
     font-size: 20px;
     text-align: center;
+
+}
+
+.soundBtn {
+
+    background: #bc5d15;
+    color: white;
+    margin-top: 60px;
+
+
+}
+
+#mapLbl {
+
+    margin-top: 40px;
+    font-size: 35px;
+    text-align: center;
+    color:rgb(170, 255, 127)
 
 }
 
@@ -174,7 +185,7 @@ input[type="text"]:focus {
 
 input[type="text"], textarea {
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .btn:disabled {
