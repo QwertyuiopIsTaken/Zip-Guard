@@ -173,6 +173,8 @@ soundBtn.addEventListener("click", async () => {
     await characteristic.writeValue(
         new TextEncoder().encode("3")
     );
+
+    startCooldown();
     
 });
 
