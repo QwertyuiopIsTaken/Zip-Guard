@@ -16,7 +16,7 @@
 <body>
     <header>
 
-    <h1>ZipGuard Bluetooth Controller</h1>
+    <h1>Urban Secure Systems | ZipGuard</h1>
 
     <span id="status" class="status disconnected">
         Status: Disconnected
@@ -27,7 +27,7 @@
 
     <section class="connection-panel">
 
-        <h2>Wireless Controls</h2>
+        <h2>Wireless Controller</h2>
 
         <button id="bleConnectBtn" class="connect-btn">
             Scan and Connect to Device via Bluetooth
@@ -48,17 +48,19 @@
 
     </section>
 
-    <h3 id="lockLbl">Lock Mode: DISABLED</h3>
+    <h3 id="lockLbl">Mode: DISABLED</h3>
 
     <input type="text" id="txtBox" placeholder="Passcode">
 
+    <h1 id="trackLbl">Keep track of your device!</h1>
+    <h1>▼</h1>
     <button id="soundBtn" class="btn soundBtn" disabled>
-        Play Sound
+        Play Sound for 5 Seconds
     </button>
 
-    <h2 id="mapLbl">GPS Location</h2>
+    <h2 id="mapLbl">Device Location</h2>
 
-    <div id="map" style="height: 500px; width: 65%; margin-top: 20px; margin-bottom: 60px;"></div>
+    <div id="map" style="height: 500px; width: 65%; margin-top: 10px; margin-bottom: 60px;"></div>
     
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
