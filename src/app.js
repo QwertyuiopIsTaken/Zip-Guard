@@ -11,6 +11,7 @@ const lockBtn = document.getElementById("lockBtn");
 const unlockBtn = document.getElementById("unlockBtn");
 
 const lockLbl = document.getElementById("lockLbl");
+const soundBtn = document.getElementById("soundBtn");
 
 const textbox = document.getElementById("txtBox");
 
@@ -31,6 +32,7 @@ function startCooldown() {
 
     lockBtn.disabled = true;
     unlockBtn.disabled = true;
+    soundBtn.disabled = true;
 
     setTimeout(() => {
 
@@ -38,10 +40,16 @@ function startCooldown() {
 
         lockBtn.disabled = false;
         unlockBtn.disabled = false;
+        soundBtn.disabled = false;
 
-    }, 1000);
+    }, 500);
 }
 
+/* START DISABLED ON PAGE LOAD */
+
+lockBtn.disabled = true;
+unlockBtn.disabled = true;
+soundBtn.disabled = true;
 
 /* CONNECT BUTTON */
 
@@ -88,6 +96,7 @@ connectBtn.addEventListener("click", async () => {
 
         lockBtn.disabled = false;
         unlockBtn.disabled = false;
+        soundBtn.disabled = false;
 
         // Disconnect listener
 
@@ -98,6 +107,7 @@ connectBtn.addEventListener("click", async () => {
 
             lockBtn.disabled = true;
             unlockBtn.disabled = true;
+            soundBtn.disabled = true;
 
             console.log("BLE lost connection.");
 
@@ -130,6 +140,7 @@ lockBtn.addEventListener("click", async () => {
     startCooldown();
 
     lockLbl.textContent = "Mode: LOCKED";
+
 });
 
 
@@ -148,4 +159,20 @@ unlockBtn.addEventListener("click", async () => {
     startCooldown();
 
     lockLbl.textContent = "Mode: UNLOCKED";
+
 });
+
+/* SOUND BUTTON */
+
+soundBtn.addEventListener("click", async () => {
+
+    if (!characteristic || buttonCooldown) return;
+
+    if (textbox.value != "67" && textbox.value != "1234567890") return;
+
+    await characteristic.writeValue(
+        new TextEncoder().encode("3")
+    );
+    
+});
+
