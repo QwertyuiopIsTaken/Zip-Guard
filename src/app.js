@@ -129,7 +129,7 @@ lockBtn.addEventListener("click", async () => {
 
     startCooldown();
 
-    lockLbl.textContent = "Mode: ENABLED";
+    lockLbl.textContent = "Mode: LOCKED";
 });
 
 
@@ -147,5 +147,5 @@ unlockBtn.addEventListener("click", async () => {
 
     startCooldown();
 
-    lockLbl.textContent = "Mode: DISABLED";
+    lockLbl.textContent = "Mode: UNLOCKED";
 });
