@@ -51,6 +51,32 @@ lockBtn.disabled = true;
 unlockBtn.disabled = true;
 soundBtn.disabled = true;
 
+/* GPS handler (MOVED OUTSIDE so it is reusable) */
+function onGpsCharacteristicChanged(event) {
+    let value = new TextDecoder().decode(event.target.value);
+
+    console.log("GPS received:", value);
+
+    let coords = value.split(",");
+
+    let lat = parseFloat(coords[0]);
+    let lng = parseFloat(coords[1]);
+
+    updateLocation(lat, lng);
+}
+
+/* Disconnect handler (MOVED OUTSIDE) */
+function onDeviceDisconnected() {
+    statusLbl.textContent = "Status: Disconnected";
+    statusLbl.className = "status disconnected";
+
+    lockBtn.disabled = true;
+    unlockBtn.disabled = true;
+    soundBtn.disabled = true;
+
+    console.log("BLE lost connection.");
+}
+
 /* CONNECT BUTTON */
 
 connectBtn.addEventListener("click", async () => {
@@ -73,22 +99,17 @@ connectBtn.addEventListener("click", async () => {
 
         await characteristic.startNotifications();
 
+        /* 🔥 IMPORTANT FIX: prevent duplicate listeners */
+        if (characteristic) {
+            characteristic.removeEventListener(
+                "characteristicvaluechanged",
+                onGpsCharacteristicChanged
+            );
+        }
+
         characteristic.addEventListener(
             "characteristicvaluechanged",
-            event => {
-                let value = new TextDecoder().decode(
-                    event.target.value
-                );
-
-                console.log("GPS received:", value);
-
-                let coords = value.split(",");
-
-                let lat = parseFloat(coords[0]);
-                let lng = parseFloat(coords[1]);
-
-                updateLocation(lat, lng);
-            }
+            onGpsCharacteristicChanged
         );
 
         statusLbl.textContent = "Status: Connected";
@@ -98,20 +119,16 @@ connectBtn.addEventListener("click", async () => {
         unlockBtn.disabled = false;
         soundBtn.disabled = false;
 
-        // Disconnect listener
+        /* 🔥 IMPORTANT FIX: avoid stacking disconnect listeners */
+        device.removeEventListener(
+            "gattserverdisconnected",
+            onDeviceDisconnected
+        );
 
-        device.addEventListener("gattserverdisconnected", () => {
-
-            statusLbl.textContent = "Status: Disconnected";
-            statusLbl.className = "status disconnected";
-
-            lockBtn.disabled = true;
-            unlockBtn.disabled = true;
-            soundBtn.disabled = true;
-
-            console.log("BLE lost connection.");
-
-        });
+        device.addEventListener(
+            "gattserverdisconnected",
+            onDeviceDisconnected
+        );
 
     } catch (error) {
 
